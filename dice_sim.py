@@ -21,27 +21,49 @@ def error(where):
     print('incorrect input, please try again')
     if where == 1:
         user_choice()
+    elif where == 2:
+        reroll_function()
 
-# create scoring function
+# create re-roll function
+def reroll_function():
+    print('would you like to roll again?')
+    print('Y/N')
+    reroll_choice = input(' ')
 
-# create random selection function
-def random_selection():
-    die_face = random.randint(1, 6)
-    print('random number: ', die_face)
-    print(die_faces[die_face - 1])
+    if reroll_choice == 'Y' or reroll_choice == 'y':
+        user_choice()
+    elif reroll_choice == 'N' or reroll_choice == 'n':
+        print('see you next time')
+        exit()
+    else:
+        error(2)
+
+
+# create random selection function + scoring
+def random_selection(ammount):
     global total_score
-    total_score = total_score + die_face
-    print('total score: ', total_score)
+    if ammount == 1:
+        die_face = random.randint(1, 6)
+        print(die_faces[die_face - 1])
+        total_score = total_score + die_face
+        print('total score: ', total_score)
+        reroll_function()
+    elif ammount == 2:
+        die_face = random.randint(1, 6)
+        print(die_faces[die_face - 1])
+        total_score = total_score + die_face
+        die_face = random.randint(1, 6)
+        print(die_faces[die_face - 1])
+        total_score = total_score + die_face
+        print('total score: ', total_score)
+        reroll_function()
 
 # create rolling function
 def rolling_function(choice):
     if choice == '1':
-        random_selection()
-        print('user selected: 1')
+        random_selection(1)
     elif choice == '2':
-        random_selection()
-        random_selection()
-        print('user selected: 2')
+        random_selection(2)
 
 # promt the user to choose between 1 or 2 dice (function)
 def user_choice():
