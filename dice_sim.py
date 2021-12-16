@@ -1,6 +1,6 @@
 import random
 
-# assign variables for later
+# assign variables for later use
 white = "\033[39m"
 blue = "\033[34m"
 point = blue + '+' + white
@@ -16,7 +16,7 @@ d_5 = '-----\n|' + point + '-' + point + '|\n|-' + point + '-|\n|' + point + '-'
 d_6 = '-----\n|' + point + '-' + point + '|\n|' + point + '-' + point + '|\n|' + point + '-' + point + '|\n-----'
 die_faces = [d_1, d_2, d_3, d_4, d_5, d_6]
 
-# create error function
+# error function which executes based on where it was called
 def error(where):
     print('incorrect input, please try again')
     if where == 1:
@@ -24,7 +24,7 @@ def error(where):
     elif where == 2:
         reroll_function()
 
-# create re-roll function
+# asks user if they want to roll again, if they do it calls user_choice() and if they don't the program terminates
 def reroll_function():
     print('would you like to roll again?')
     print('Y/N')
@@ -39,7 +39,8 @@ def reroll_function():
         error(2)
 
 
-# create random selection function + scoring
+# rolls 1 or 2 dice based on the users selection, adds the value to the total score, prints total score, then calls the re-roll 
+# function
 def random_selection(ammount):
     global total_score
     if ammount == 1:
@@ -58,7 +59,7 @@ def random_selection(ammount):
         print('total score: ', total_score)
         reroll_function()
 
-# create rolling function
+# calls random_selection function with user chosen parameters
 def rolling_function(choice):
     if choice == '1':
         random_selection(1)
